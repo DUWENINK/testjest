@@ -1,0 +1,109 @@
+<html>
+<head>
+    <title>Home</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f0f0f0;
+        }
+
+
+        #cookie {
+            padding: 20px;
+            margin-top: 20px;
+            background-color: #ffffe0;
+            border: 1px solid #ff0;
+            border-radius: 4px;
+        }
+        
+        h1 {
+            color: #333;
+        }
+
+        #myform {
+            max-width: 600px;
+            margin: 0 auto;
+            padding: 20px;
+            background-color: #fff;
+            box-shadow: 0px 0px 10px rgba(0,0,0,0.1);
+        }
+
+        #myform fieldset {
+            border: none;
+            padding: 0;
+        }
+
+        #myform label {
+            display: block;
+            margin-top: 20px;
+        }
+
+        #myform input[type="text"],
+        #myform select,
+        #myform input[type="date"] {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ddd;
+            border-radius: 4px;
+        }
+
+        #myform input[type="submit"] {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            margin-top: 20px;
+            background-color: #007BFF;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+
+        #myform input[type="submit"]:hover {
+            background-color: #0056b3;
+        }
+    </style>
+</head>
+<body>
+    <h1>Home</h1>
+    <div id="myform">
+      <h1>Personal Preferences Quiz</h1>
+      <form action="/submitquiz" method="post">
+          <fieldset>
+              <label for="favAnimal">Favorite Animal:</label>
+              <input type="text" id="favAnimal" name="favAnimal" />
+  
+              <label for="favBook">Favorite Book:</label>
+              <input type="text" id="favBook" name="favBook" />
+  
+              <label for="favTime">Favorite Time of Day:</label>
+              <select id="favTime" name="favTime">
+                  <option value="morning">Morning</option>
+                  <option value="afternoon">Afternoon</option>
+                  <option value="evening">Evening</option>
+                  <option value="night">Night</option>
+              </select>
+  
+              <label for="birthdate">Your Birthdate:</label>
+              <input type="date" id="birthdate" name="birthdate"/>
+  
+              <input type="submit" value="Submit Quiz" /> 
+          </fieldset>
+      </form>
+  </div>
+  <div id="cookie"></div>
+  <script>
+    const cookies = document.cookie.split(';');
+    for(let i = 0; i < cookies.length; i++){
+        const split = cookies[i].split('=');
+        if(split[0].trim() == "quizResult"){
+            document.getElementById("cookie").innerHTML = decodeURIComponent(split[1]);
+            break;
+        }
+    }
+</script>
+</body>
+</html>
